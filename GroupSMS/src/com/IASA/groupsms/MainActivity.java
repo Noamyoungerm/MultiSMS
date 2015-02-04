@@ -1,19 +1,12 @@
 package com.IASA.groupsms;
 
-import java.util.Random;
-
-import com.IASA.groupsms.MessageArrayAdapter;
-import com.IASA.groupsms.OneComment;
-import com.IASA.groupsms.R;
 import android.R.string;
 import android.support.v7.app.ActionBarActivity;
 import android.telephony.SmsManager;
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnKeyListener;
 import android.widget.*;
 import java.util.*;
 
