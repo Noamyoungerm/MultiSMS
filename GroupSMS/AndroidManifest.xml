@@ -32,6 +32,10 @@
             android:name=".MainDrawerLayoutActivity"
             android:label="@string/title_activity_main_drawer_layout" >
         </activity>
+        <activity
+            android:name=".MessageArrayAdapter"
+            android:label="@string/title_activity_message_array_adapter" >
+        </activity>
     </application>
 
 </manifest>

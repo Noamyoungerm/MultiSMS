@@ -14,5 +14,6 @@
     </string-array>
 
     <string name="title_activity_main_drawer_layout">MainActivity</string>
+    <string name="title_activity_message_array_adapter">MessageArrayAdapter</string>
 
 </resources>
