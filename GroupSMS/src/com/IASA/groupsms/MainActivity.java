@@ -1,56 +1,49 @@
 package com.IASA.groupsms;
 
-import java.util.Random;
-
-import com.IASA.groupsms.MessageArrayAdapter;
-import com.IASA.groupsms.OneComment;
-import com.IASA.groupsms.R;
 import android.R.string;
 import android.support.v7.app.ActionBarActivity;
 import android.telephony.SmsManager;
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnKeyListener;
 import android.widget.*;
+import java.util.*;
 
 
 public class MainActivity extends ActionBarActivity {
 
-	private com.IASA.groupsms.MessageArrayAdapter adapter;
-	private ListView messagesLV;
-	private EditText editMessageET;
+	Button send;
+	EditText phoneNum, msg;
+	List<Phone> chatMembers;
 	
+    chatMembers = new ArrayList<Phone>();
+    chatMembers.add(new Phone("+972-50-257-3295", PhoneType.DUMBPHONE));
+    chatMembers.add(new Phone("+972-54-487-5883", PhoneType.SMARTPHONE));
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        
-     // Setting up vars
-     	messagesLV = (ListView) findViewById(R.id.messagesLV);
-     	//The adapter (I think) feeds into the list view. When we edit the adapter, we edit the list view (which is less dynamic)
-     	adapter = new MessageArrayAdapter(getApplicationContext(), R.layout.activity_list_item); //Creating adapter
-
-     	messagesLV.setAdapter(adapter); //Linking adapter with List View (forever - no need for repetitive syncing)
-     		
-     	//Sending message on enter press
-     	editMessageET = (EditText) findViewById(R.id.editMessageET);
-     	editMessageET.setOnKeyListener(new OnKeyListener() {
-     			public boolean onKey(View v, int keyCode, KeyEvent event) {
-     				// If the event is a key-down event on the "enter" button
-     				if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
-     					// Perform action on key press
-     					adapter.add(new OneComment(false, editMessageET.getText().toString())); 
-     					editMessageET.setText("");
-     					return true;
-     				}
-     				return false;
-     			}
-     		});
-     	
+        chatMembers = new ArrayList<Phone>();
+        chatMembers.add(new Phone("+972-50-257-3295", PhoneType.DUMBPHONE));
+        chatMembers.add(new Phone("+972-54-487-5883", PhoneType.SMARTPHONE));
+        msg = (EditText) findViewById(R.id.messageTV);
+        phoneNum = (EditText) findViewById(R.id.phoneNumTV);
+        send = (Button) findViewById(R.id.bSend);
+        send.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				SmsManager smsManager = SmsManager.getDefault();
+				public void onClick(View v) {
+					SmsManager smsManager = SmsManager.getDefault();
+					for(Phone p : chatMembers) {
+						smsManager.sendTextMessage(p.getPhoneNumber(), null, msg.getText().toString(), null, null);	
+					}
+				}
+			}
+		});
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
