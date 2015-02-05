@@ -7,10 +7,12 @@
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="21" />
-    <uses-permission android:name="android.permission.SEND_SMS"/>
-    <uses-permission android:name="android.permission.READ_SMS"/>
-    <uses-permission android:name="android.permission.WRITE_SMS"/>
-    <uses-permission android:name="android.permission.RECEIVE_SMS"/>
+
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.WRITE_SMS" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
 
     <application
         android:allowBackup="true"
@@ -18,9 +20,9 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".MainActivity"
+            android:name=".Conversation"
             android:label="@string/app_name" >
-            <intent-filter>
+                      <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -29,6 +31,28 @@
         <activity
             android:name=".MessageArrayAdapter"
             android:label="@string/title_activity_message_array_adapter" >
+        </activity>
+
+        <!--
+        <activity android:name=".activity_main"
+                  android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+		</activity>
+        -->
+
+        <receiver android:name=".ReceiveSMS" >
+            <intent-filter>
+                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name=".MenuActivity"
+            android:label="@string/title_activity_menu" >
+
         </activity>
     </application>
 
